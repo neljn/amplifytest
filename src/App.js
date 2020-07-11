@@ -1,24 +1,63 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
+
 import './App.css';
+import './index.css';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <Navbar>
+      <NavItem icon="😄" />
+      <NavItem icon="😄" />
+      <NavItem icon="😄" />
+
+      <NavItem icon="😉">
+        <DropDownMenu />
+      </NavItem>
+
+    </Navbar>
+  );
+}
+
+function Navbar(props) {
+  return (
+    <nav className="navbar">
+      <ul className="navbar-nav">{props.children}</ul>
+    </nav >
+  );
+}
+
+function NavItem(props) {
+
+  const [open, setOpen] = useState(false);
+
+  return (
+    <li className="nav-item">
+      <a href="#" className="icon-button" onClick={() => setOpen(!open)}>
+        {props.icon}
+      </a>
+      {open && props.children}
+    </li>
+  );
+}
+
+function DropDownMenu() {
+
+  function DropDownItem(props) {
+    return (
+      <a href="#" className="menu-item">
+        <span className="icon-button">{props.leftIcon}</span>
+        {props.children}
+        <span className="icon-right">{props.rightIcon}</span>
+
+      </a>
+    );
+  }
+
+  return (
+    <div className="dropdown">
+      <DropDownItem>My Profile</DropDownItem>
+      <DropDownItem leftIcon="✔" rightIcon="👀">  </DropDownItem>
     </div>
   );
 }
