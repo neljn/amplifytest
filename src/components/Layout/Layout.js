@@ -1,14 +1,14 @@
 import React from 'react';
 
-import Aux from '../../hoc/Aux';
+import Auxfile from '../../hoc/Auxfile';
 
 const layout = (props) => (
-    <Aux>
+    <Auxfile>
         <div>Toolbar, SideDrawer, Backdrop</div>
         <main>
             {props.children}
         </main>
-    </Aux>
+    </Auxfile>
 );
 
 export default layout;
